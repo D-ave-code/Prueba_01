@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'application'
+    id "io.freefair.lombok" version "6.6.1"
+
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    google()
+}
+ext{
+    helidonVersion = '3.0.2'
+}
+dependencies {
+    implementation platform("io.helidon:helidon-dependencies:${project.helidonVersion}")
+    implementation 'org.glassfish.jersey.media:jersey-media-json-binding'
+    implementation 'io.helidon.microprofile.server:helidon-microprofile-server'
+
+    implementation 'org.postgresql:postgresql:42.2.14'
+    implementation 'org.jdbi:jdbi3-core:3.36.0'
+    implementation 'com.zaxxer:HikariCP:3.4.5'
+    runtimeOnly 'org.jboss:jandex'
+
+}
+sourceSets {
+    main {
+        output.resourcesDir = file("${buildDir}/classes/java/main")
+    }
+}
